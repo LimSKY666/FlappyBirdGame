@@ -1,6 +1,7 @@
 package itis.game.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class Bird {
@@ -8,6 +9,7 @@ public class Bird {
     public static final int GRAVITY = -15;
     private Vector3 position;
     private Vector3 velosity;
+    private Rectangle bounds;
 
     private Texture bird;
 
@@ -15,6 +17,7 @@ public class Bird {
         position = new Vector3(x, y, 0);
         velosity = new Vector3(0, 0, 0);
         bird = new Texture("bird.png");
+        bounds = new Rectangle(x, y, bird.getWidth(), bird.getHeight());
     }
 
     public Vector3 getPosition() {
@@ -34,9 +37,13 @@ public class Bird {
             position.y = 0;
 
         velosity.scl(1 / dt);
+        bounds.setPosition(position.x, position.y);
     }
 
     public void jump() {
         velosity.y = 250;
+    }
+    public Rectangle getBounds(){
+        return bounds;
     }
 }

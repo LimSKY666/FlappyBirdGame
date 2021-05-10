@@ -24,7 +24,7 @@ public class PlayState extends State {
         camera.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);
         bg = new Texture("bg.png");
 
-        tubes = new Array<Tube>();
+        tubes = new Array<>();
 
         for (int i = 0; i < TUBE_COUNT; i++) {
             tubes.add(new Tube(i*(TUBE_SPACING+Tube.TUBE_WIDTH)));
@@ -48,6 +48,8 @@ public class PlayState extends State {
             if(camera.position.x - (camera.viewportWidth/2)>tube.getPosTopTube().x+tube.getTopTube().getWidth()){
                 tube.reposition(tube.getPosTopTube().x+((Tube.TUBE_WIDTH+TUBE_SPACING)*TUBE_COUNT));
             }
+            if (tube.collides(bird.getBounds()))
+                gsm.set(new PlayState(gsm));
         }
         camera.update();
     }
