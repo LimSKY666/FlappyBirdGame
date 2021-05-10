@@ -11,33 +11,33 @@ import itis.game.states.GameStateManager;
 import itis.game.states.MenuState;
 
 public class FlappyBird extends ApplicationAdapter {
-	public static final int WIDTH = 480;
-	public static final int HEIGHT = 800;
+    public static final int WIDTH = 480;
+    public static final int HEIGHT = 800;
 
-	public static final String TITLE = "Flappy Bird";
-	private GameStateManager gsm;
-	private SpriteBatch batch;
+    public static final String TITLE = "Flappy Bird";
+    private GameStateManager gsm;
+    private SpriteBatch batch;
 
-	Texture img;
-	
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		gsm = new GameStateManager();
-		Gdx.gl.glClearColor(1,0,0,1);
-		gsm.push(new MenuState(gsm));
-	}
+    Texture img;
 
-	@Override
-	public void render () {
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		gsm.update(Gdx.graphics.getDeltaTime());
-		gsm.render(batch);
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
+        gsm = new GameStateManager();
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        gsm.push(new MenuState(gsm));
+    }
+
+    @Override
+    public void render() {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        gsm.update(Gdx.graphics.getDeltaTime());
+        gsm.render(batch);
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
+        img.dispose();
+    }
 }
